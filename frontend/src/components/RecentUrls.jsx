@@ -1,33 +1,26 @@
 import React, { useState } from 'react';
-import type { UrlItem } from '../types';
 import { getAnalytics } from '../services/api';
-import type { AnalyticsResponse } from '../types';
 import AnalyticsModal from './AnalyticsModal';
 
-interface Props {
-  urls: UrlItem[];
-  loading: boolean;
-}
-
-const RecentUrls: React.FC<Props> = ({ urls, loading }) => {
-  const [toast, setToast] = useState<string | null>(null);
-  const [analytics, setAnalytics] = useState<AnalyticsResponse | null>(null);
+const RecentUrls = ({ urls, loading }) => {
+  const [toast, setToast] = useState(null);
+  const [analytics, setAnalytics] = useState(null);
   const [analyticsLoading, setAnalyticsLoading] = useState(false);
 
-  const showToast = (msg: string) => {
+  const showToast = (msg) => {
     setToast(msg);
     setTimeout(() => setToast(null), 2500);
   };
 
-  const handleCopy = (shortUrl: string) => {
+  const handleCopy = (shortUrl) => {
     navigator.clipboard.writeText(shortUrl).then(() => showToast('Copied to clipboard!'));
   };
 
-  const handleOpen = (shortUrl: string) => {
+  const handleOpen = (shortUrl) => {
     window.open(shortUrl, '_blank', 'noopener,noreferrer');
   };
 
-  const handleAnalytics = async (id: number) => {
+  const handleAnalytics = async (id) => {
     setAnalyticsLoading(true);
     try {
       const data = await getAnalytics(id);
@@ -39,7 +32,7 @@ const RecentUrls: React.FC<Props> = ({ urls, loading }) => {
     }
   };
 
-  const formatDate = (dateStr: string) => {
+  const formatDate = (dateStr) => {
     const d = new Date(dateStr);
     return d.toLocaleDateString('en-GB', {
       weekday: 'long',

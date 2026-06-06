@@ -1,5 +1,4 @@
 import React from 'react';
-import type { AnalyticsResponse } from '../types';
 import {
   AreaChart,
   Area,
@@ -10,12 +9,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-interface Props {
-  analytics: AnalyticsResponse;
-  onClose: () => void;
-}
-
-const AnalyticsModal: React.FC<Props> = ({ analytics, onClose }) => {
+const AnalyticsModal = ({ analytics, onClose }) => {
   const chartData = analytics.dailyClicks.map((d) => ({
     date: d.date,
     clicks: d.clicks,

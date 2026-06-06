@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
 import { createShortUrl } from '../services/api';
-import type { UrlItem } from '../types';
 
-interface Props {
-  onUrlCreated: (url: UrlItem) => void;
-}
-
-const HeroBanner: React.FC<Props> = ({ onUrlCreated }) => {
+const HeroBanner = ({ onUrlCreated }) => {
   const [inputUrl, setInputUrl] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
 
@@ -33,7 +28,7 @@ const HeroBanner: React.FC<Props> = ({ onUrlCreated }) => {
       const newUrl = await createShortUrl(inputUrl.trim());
       onUrlCreated(newUrl);
       setInputUrl('');
-    } catch (err: unknown) {
+    } catch (err) {
       const message =
         err instanceof Error
           ? err.message

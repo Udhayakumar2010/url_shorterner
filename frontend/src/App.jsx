@@ -5,17 +5,16 @@ import RecentUrls from './components/RecentUrls';
 import Pagination from './components/Pagination';
 import Statistics from './components/Statistics';
 import { getUrls } from './services/api';
-import type { UrlItem } from './types';
 
 const PAGE_SIZE = 10;
 
-const App: React.FC = () => {
-  const [urls, setUrls] = useState<UrlItem[]>([]);
+const App = () => {
+  const [urls, setUrls] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
 
-  const fetchUrls = useCallback(async (page: number) => {
+  const fetchUrls = useCallback(async (page) => {
     setLoading(true);
     try {
       const data = await getUrls(page, PAGE_SIZE);
@@ -32,7 +31,7 @@ const App: React.FC = () => {
     fetchUrls(currentPage);
   }, [fetchUrls, currentPage]);
 
-  const handleUrlCreated = (newUrl: UrlItem) => {
+  const handleUrlCreated = (newUrl) => {
     // Prepend and refresh page 0 to reflect new entry
     setCurrentPage(0);
     fetchUrls(0);
@@ -40,7 +39,7 @@ const App: React.FC = () => {
     setUrls((prev) => [newUrl, ...prev.slice(0, PAGE_SIZE - 1)]);
   };
 
-  const handlePageChange = (page: number) => {
+  const handlePageChange = (page) => {
     setCurrentPage(page);
     fetchUrls(page);
   };

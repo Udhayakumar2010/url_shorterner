@@ -11,10 +11,9 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { getGlobalStats } from '../services/api';
-import type { DailyStat } from '../types';
 
-const Statistics: React.FC = () => {
-  const [stats, setStats] = useState<DailyStat[]>([]);
+const Statistics = () => {
+  const [stats, setStats] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -31,7 +30,7 @@ const Statistics: React.FC = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  const formatDateLabel = (dateStr: string) => {
+  const formatDateLabel = (dateStr) => {
     const d = new Date(dateStr);
     return d.toLocaleDateString('en-GB', { day: '2-digit', weekday: 'short' }).replace(',', 'th');
   };
