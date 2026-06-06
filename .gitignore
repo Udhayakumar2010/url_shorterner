@@ -1,0 +1,99 @@
+# ============================================================
+# URL Shortener — .gitignore
+# Spring Boot (Maven) backend + Vite / React / TypeScript frontend
+# ============================================================
+
+# ─── OS & Editor ────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# VSCode (keep shared settings, ignore user-specific ones)
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+
+# IntelliJ / JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# ─── Java / Maven (backend) ─────────────────────────────────
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+
+# Maven wrapper properties are safe to keep; ignore local overrides
+!backend/.mvn/wrapper/maven-wrapper.properties
+
+# Compiled class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Spring Boot devtools restart trigger file
+.reloadtrigger
+
+# Spring Boot application secrets / local overrides
+backend/src/main/resources/application-local.yml
+backend/src/main/resources/application-local.properties
+backend/src/main/resources/application-secret.yml
+
+# ─── Node / Frontend (Vite + React + TypeScript) ─────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# Vite cache
+frontend/.vite/
+
+# TypeScript build info
+frontend/*.tsbuildinfo
+frontend/tsconfig.tsbuildinfo
+
+# ─── Bundled / Downloaded archives at project root ──────────
+apache-maven.zip
+maven/
+
+# ─── Logs ───────────────────────────────────────────────────
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ─── Environment & Secrets ──────────────────────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# ─── Database ───────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+
+# ─── Test & Coverage reports ────────────────────────────────
+backend/target/surefire-reports/
+frontend/coverage/
